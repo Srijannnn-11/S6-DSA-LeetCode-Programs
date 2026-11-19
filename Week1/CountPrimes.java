@@ -1,23 +1,25 @@
-class Solution {
-    public int countPrimes(int n) {
-        if (n <= 2){
-        return 0;
-        }
-        boolean[] isComposite = new boolean[n];
+import java.util.Scanner;
 
-        for (int i = 2; i * i < n; i++) {
-            if (!isComposite[i]) {
-                for (int j = i * i; j < n; j += i) {
-                    isComposite[j] = true;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a number.");
+        int n = sc.nextInt();
+
+        System.out.println("Primes numbers are:");
+
+        for(int num= 2; num <= n; num++) {
+            boolean isPrime=true;
+
+            for(int i = 2; i < num; i++) {
+                if (num % i == 0) {
+                    isPrime = false;
+                    break;
                 }
             }
-        }
-        int count = 0;
-        for (int i = 2; i < n; i++) {
-            if (!isComposite[i]) {
-                count++;
+            if(isPrime){
+                System.out.print(num+ ",");
             }
         }
-        return count;
     }
 }
